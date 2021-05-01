@@ -1,0 +1,31 @@
+<%= form_for(@review) do |f| %>
+  
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+  <%= f.label :rating %>
+  <%= f.number_field :rating, min:0, max:10 %>
+
+  <br><br>
+
+  <%= f.label :book_id, "Select a Book" %>
+  <%= f.collection_select :book_id, Book.all, :id, :title, prompt: true %>
+  <br><br>
+
+  <% if !params[:book_id] %>
+    <h4>Or add a new book:</h4>
+
+    <%= f.fields_for :book do |b|%>
+        <%= b.label :title %>
+        <%= b.text_field :title %>
+        <%= b.label :author %>
+        <%= b.text_field :author %>
+        <%= b.label :length %>
+        <%= b.number_field :length %>
+        <%= b.label :year %>
+        <%= b.number_field :year %>
+    <% end %>
+  <% end %>
+
+  <br><br>
+  <%= f.submit %>
+<% end %>
