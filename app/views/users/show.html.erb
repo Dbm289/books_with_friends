@@ -1,0 +1,22 @@
+<br>
+<h2 class="center"><%= @user.username %></h2>
+
+<br>
+
+<h5 class="center"><%= @user.email %></h5>
+
+<br>
+
+<h2 class="center"><%= @user.reviews %></h2>
+
+<br>
+
+<h2 class="center"><%= @user.books %></h2>
+
+<br>
+
+<%= link_to 'Edit', edit_user_path(@user) %>
+
+<br>
+
+<%= link_to 'Write a Review', new_review_path(@user) %>

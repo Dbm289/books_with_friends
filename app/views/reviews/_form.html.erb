@@ -1,4 +1,6 @@
 <%= form_for(@review) do |f| %>
+
+<%= render partial: 'layouts/errors', locals: {object: @review} %>
   
   <%= f.label :content %>
   <%= f.text_field :content %>

@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Review.destroy_all
+User.destroy_all
+Book.destroy_all
+
+User.create([
+    {username:"Dan", email:"Dan@dan.com", password:"pw"}
+
+])
+
+Book.create([
+    {title:"The Book", author:"Author Author", length:1, year:2000}
+])
+

@@ -1,0 +1,19 @@
+<h1>All Books</h1>
+
+<ul>
+  <% @books.each do |book|%>
+    <li>
+      <%= link_to book.title.sort, book_path(book) %> -
+      <%= book.reviews.average_rating %>
+      
+          <% book.ordered_books.each do |p|%>
+          <li><strong><%= p.name %></strong> |
+            <%= p.age%> years old |
+            <strong><%= p.species %></strong> |
+            Owner: <%= p.user.username%>
+          </li>
+          <% end %>
+        </ul>
+    </li>
+  <% end %>
+</ul>

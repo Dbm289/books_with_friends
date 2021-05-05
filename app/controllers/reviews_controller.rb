@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
 
     def new
-        if params[:book_id] && book = Book.find_by_id(params[:book_id])
+        if params[:book_id] && book = Book.find_by_id(params[:_id])
             @review = review.book.build
         else
             @review = Review.new
@@ -23,12 +23,7 @@ class ReviewsController < ApplicationController
         if params[:book_id] && book = Book.find_by_id(params[:book_id])
             @reviews = book.reviews 
         else
-            if params[:rating]
-                @reviews = Review.search_by_rating(params[:rating]).order_by_rating.includes(:book, :user)
-                @reviews = Review.order_by_rating if @reviews == []
-            else
-                @reviews = Review.includes(:book, :user).order_by_rating
-            end
+            @reviews = Review.all
         end
     end
 

@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
             session[:user_id] = @user.id
             redirect_to reviews_path
         else
-            redirect_to 'login'
+            flash[:error] = "Sorry, looks like one of those isn't working!"
+            redirect_to '/login'
         end
     end
 
@@ -18,8 +19,9 @@ class SessionsController < ApplicationController
         @user = User.find_or_create_by(uid: auth['uid']) do |u|
           u.username = auth['info']['name']
           u.email = auth['info']['email']
-          u.password = auth['uid']   # Secure Random Hex
+          u.password = auth['uid']   # Secure Random Hex for later?
         end
+    end
 
     def home
     end
@@ -32,6 +34,7 @@ class SessionsController < ApplicationController
     private
 
     def auth
+        #binding.pry
         request.env['omniauth.auth']
 
     end
