@@ -1,10 +1,10 @@
-<h1><%= @book.name %></h1>
+<h1><%= @book.title %></h1>
 
-<h2> Average Rating: <%= @book.reviews.average_rating%></h2>
+<h2> Average Rating: <%= @book.reviews.average("rating")%></h2>
 <br>
 <h2> Length: <%= @book.length%> pages </h2>
 <br>
 <h2> Year released: <%= @book.year%> </h2>
 
-<%= link_to "See All Reviews", book_reviews_path(@book.id) %> - 
-<%= link_to "Add Your Review", new_book_review_path(@book.id) %>
+<%= link_to "See All Reviews", reviews_path %> /
+<%= link_to "Add Your Review", new_review_path %>

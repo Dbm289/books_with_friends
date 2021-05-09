@@ -1,7 +1,9 @@
 class ReviewsController < ApplicationController
 
+    before_action :check_for_logged_in, except: [:index]
+
     def new
-        if params[:book_id] && book = Book.find_by_id(params[:_id])
+        if params[:book_id] && book = Book.find_by_id(params[:book_id])
             @review = review.book.build
         else
             @review = Review.new
@@ -22,6 +24,8 @@ class ReviewsController < ApplicationController
     def index
         if params[:book_id] && book = Book.find_by_id(params[:book_id])
             @reviews = book.reviews 
+        elsif params[:user_id] && user = User.find_by_id(params[:user_id])
+            @reviews = user.reviews
         else
             @reviews = Review.all
         end
@@ -29,6 +33,7 @@ class ReviewsController < ApplicationController
 
     def show
         set_review
+        
     end
 
     def edit
@@ -54,12 +59,12 @@ class ReviewsController < ApplicationController
 
     def set_review
         @review = Review.find_by_id(id: params[:id])
-        if !@review
-            redirect_to reviews_path
-        end
+        #if !@review
+            #redirect_to reviews_path
+        #end
     end
 
     def review_params
-        params.require(:review).permit(:content, :rating, :book_id)
+        params.require(:review).permit(:content, :rating, :book_id, book_attributes: [:title, :author, :length, :year])
     end
 end

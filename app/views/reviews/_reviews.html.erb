@@ -1,5 +1,5 @@
 <% reviews.each do |review| %>
     <p><%= link_to review.book.title, review_path(review) %>
-      reviewer: <%= review.user.try(:username) %> -
-      book: <%= review.book.try(:title) %></p>
+      reviewer: <%= review.user.try(:username) %>, <br>
+      Book: <%= review.book.try(:title) %></p>
 <% end %>

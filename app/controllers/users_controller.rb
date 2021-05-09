@@ -29,12 +29,13 @@ class UsersController < ApplicationController
     
       def review
         @user = User.find(params[:id])
-    
-        # Note that because ids are unique by table we can go directly to
-        # Post.find — no need for @author.posts.find...
         @review = Review.find(params[:review_id])
         render template: 'reviews/show'
       end 
+
+      def show
+        @user = User.find(params[:id])
+      end
 
     private
 

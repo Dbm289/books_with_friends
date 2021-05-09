@@ -1,0 +1,12 @@
+<h1> Reviews of <%=@book.title%> </h1>
+
+<% @books.each do | book | %>
+
+    <li>
+    <%= link_to review.user review_path(book) %>
+    </li>
+
+    <% end %>
+
+
+

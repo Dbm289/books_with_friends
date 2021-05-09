@@ -1,6 +1,0 @@
-<h1><%= @review.book.title %></h1>
-
-<% if @review.user == current_user %>
-  <%= link_to "Edit Review", edit_review_path(@review) %>
-  <%= link_to "Delete Review", review_path(@review), method: :delete  %>
-<% end %>

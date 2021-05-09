@@ -3,7 +3,8 @@
 <%= render partial: 'layouts/errors', locals: {object: @review} %>
   
   <%= f.label :content %>
-  <%= f.text_field :content %>
+  <%= f.text_area :content %>
+  <br>
   <%= f.label :rating %>
   <%= f.number_field :rating, min:0, max:10 %>
 

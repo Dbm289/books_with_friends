@@ -21,6 +21,7 @@ class SessionsController < ApplicationController
           u.email = auth['info']['email']
           u.password = auth['uid']   # Secure Random Hex for later?
         end
+        redirect_to '/' #make sure you direct user here
     end
 
     def home
