@@ -1,0 +1,18 @@
+<h1><%=@review.book.title%> Review</h1>
+
+<%= render 'reviews' , reviews: [@review]%>
+
+<h3>Review</h3>
+<%= @review.try(:content) %>
+
+<br>
+<br>
+
+<% if @review.user == current_user %>
+  <%= link_to "Edit Review", edit_review_path(@review) %>
+
+  <br>
+
+  <%= link_to "Delete Review", review_path(@review), method: :delete  %>
+  
+<% end %>

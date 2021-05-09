@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/auth/facebook/callback', to: 'sessions#fbcreate'
   resources :books
-  resources :users
+  #resources :users, only [:show, :index] do
+   # resources :reviews, only: [:show, :index, :new, :edit]
+  #end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

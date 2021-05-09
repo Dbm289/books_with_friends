@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
 
     before_action :check_for_logged_in, except: [:index]
+    before_action :set_review, except: [:index]
 
     def new
         if params[:book_id] && book = Book.find_by_id(params[:book_id])
@@ -58,7 +59,7 @@ class ReviewsController < ApplicationController
     private 
 
     def set_review
-        @review = Review.find_by_id(id: params[:id])
+        @review = Review.find_by(id: params[:id])
         #if !@review
             #redirect_to reviews_path
         #end
