@@ -1,9 +1,11 @@
-<h1><%=@review.book.title%> Review</h1>
+<h1><%= @review.user.username %>'s Review of <%= @review.book.title %></h1>
 
-<%= render 'reviews' , reviews: [@review]%>
-
-<h3>Review</h3>
-<%= @review.try(:content) %>
+<ul>
+    <li>Reviewer: <%= link_to @review.user.try(:username), user_path(@review.user) %></li>
+    <li>Book: <%= link_to @review.book.try(:title), book_path(@review.book) %></li>
+    <br>
+    <br>
+    <h3>Review</h3> <%= @review.try(:content) %>
 
 <br>
 <br>

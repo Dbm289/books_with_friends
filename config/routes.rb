@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  get '/auth/facebook/callback', to: 'sessions#fbcreate'
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
   resources :books
   #resources :users, only [:show, :index] do
    # resources :reviews, only: [:show, :index, :new, :edit]

@@ -1,5 +1,7 @@
-<% reviews.each do |review| %>
-    <p><%= link_to review.book.title, review_path(review) %>
-      reviewer: <%= review.user.try(:username) %>, <br>
-      Book: <%= review.book.try(:title) %></p>
-<% end %>
+<ul>
+    <% reviews.each do |review| %>
+        <li><%= link_to "#{review.book.title} - #{review.rating} Star(s)", review_path(review) %><br>
+          Reviewer: <%= link_to review.user.try(:username), user_path(review.user) %><br>
+          Book: <%= link_to review.book.try(:title), book_path(review.book) %></li>
+    <% end %>
+</ul>

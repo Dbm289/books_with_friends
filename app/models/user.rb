@@ -6,12 +6,12 @@ class User < ApplicationRecord
 
     validates :username, :email, presence: true
     validates :username, :email, uniqueness: true
-    #valdiates :is_email?
 
-    def is_email?
-        if !email.match(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i)
-            errors.add(:email, "Give me a real email dammit")
-        end 
-        
-    end 
+    def self.create_from_omniauth(auth)
+        User.find_or_create_by(uid: auth['uid'], provider: auth['provider']) do |u|
+          u.username = auth['info']['name']
+          u.email = auth['info']['email']
+          u.password = SecureRandom.hex(16)
+        end
+      end
 end

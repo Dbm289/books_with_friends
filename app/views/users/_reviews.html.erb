@@ -1,0 +1,5 @@
+<ul>
+    <% reviews.each do |review| %>
+        <li><%= link_to  "#{review.book.title} - #{review.rating} Star(s)", review_path(review) %></li>
+    <% end %>
+</ul>
