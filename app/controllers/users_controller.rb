@@ -9,20 +9,14 @@ class UsersController < ApplicationController
     end
 
     def create
-        if !logged_in?
-            @user = User.new(user_params)
-            if @user.save
-                session[:user_id] = user.id
-
-                redirect_to root_path
-
-            else
-                render :new
-            end
+        @user = User.new(user_params)
+        if @user.save
+          session[:user_id] = @user.id
+          redirect_to reviews_path
         else
-            redirect_to reviews_path
+          render :new
         end
-    end
+      end
 
     def index
         @users = User.all
