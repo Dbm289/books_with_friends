@@ -1,24 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Books with Friends
 
-Things you may want to cover:
+As the name implies, Books with Friends is intended to be a small social review app for readers to check out books their friends have read! It allows for an out-of-ten review and a quick written review of what you liked and what you didn't. You can also keep up with your friends and see what they've reviewed and chronicle your own reading journey.
 
-* Ruby version
+To install the program, just open your terminal and run the following:
 
-* System dependencies
+```git clone git@github.com:Dbm289/books_with_friends.git
 
-* Configuration
+Then enter 
 
-* Database creation
+```cd books_with_friends
 
-* Database initialization
+Before starting, make sure you
 
-* How to run the test suite
+```bundle install
 
-* Services (job queues, cache servers, search engines, etc.)
+Running 
 
-* Deployment instructions
+```rails db:seed
 
-* ...
+will add a few sample users and reviews to your database so you can get a feel for the site.
+
+You can run the program from a localhost by running 
+
+```rails s
+
+in your terminal.
