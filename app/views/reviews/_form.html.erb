@@ -1,8 +1,13 @@
-<%= form_for(@review) do |f| %>
+<%= form_for([@book, @review]) do |f| %>
 
 <%= render partial: 'layouts/errors', locals: {object: @review} %>
 
-<%= f.hidden_field :user_id %>
+<%= f.hidden_field :user_id, value: current_user.id %>
+<% if params[:book_id] %>
+
+<%= f.hidden_field :book_id, value: @book.id %>
+<% end %>
+
   
   <%= f.label :content %>
   <%= f.text_area :content %>
@@ -12,11 +17,13 @@
 
   <br><br>
 
+  <% if !params[:book_id] %>
+
   <%= f.label :book_id, "Select a Book" %>
   <%= f.collection_select :book_id, Book.all, :id, :title, prompt: true %>
   <br><br>
 
-  <% if !params[:book_id] %>
+  
     <h4>Or add a new book:</h4>
 
     <%= f.fields_for :book do |b|%>

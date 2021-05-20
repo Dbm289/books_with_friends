@@ -5,7 +5,10 @@
     <li>Book: <%= link_to @review.book.try(:title), book_path(@review.book) %></li>
     <br>
     <br>
-    <h3>Review</h3> <%= @review.try(:content) %>
+    <h3>Review</h3>
+
+    <h4> Rating: <%= @review.try(:rating) %> </h4>
+    <p> <%= @review.try(:content) %> </p>
 
 <br>
 <br>

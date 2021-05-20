@@ -1,7 +1,7 @@
 class Review < ApplicationRecord
     belongs_to :user
     belongs_to :book
-    validates :book_id, presence: true
+    validates :content, :rating, presence: true
     validates_associated :book
     #accepts_nested_attributes_for :book
 
@@ -10,7 +10,7 @@ class Review < ApplicationRecord
         self.book = book if book.valid? || !self.book
      end
 
-    scope :order_by_rating, -> {order(:rating)}
+    scope :order_by_rating, -> {order(rating: :desc)}
 
     scope :search_by_rating, -> (search_rating){where("rating > ?", search_rating)}
 

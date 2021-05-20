@@ -4,8 +4,8 @@ class ReviewsController < ApplicationController
     before_action :set_review, except: [:index]
 
     def new
-        if params[:book_id] && book = Book.find_by_id(params[:book_id])
-            @review = review.book.build
+        if params[:book_id] && @book = Book.find_by_id(params[:book_id])
+            @review = @book.reviews.build
         else
             @review = Review.new
             @review.build_book
@@ -13,32 +13,30 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        @review = current_user.reviews.build(review_params)
+        @review = Review.new(review_params) 
+        @book = Book.find_by_id(params[:book_id])
+        #byebug
         if @review.save
             redirect_to review_path(@review)
         else
-            @review.build_book unless @review.book
             render :new
         end
     end
 
     def index
-        if params[:book_id] && book = Book.find_by_id(params[:book_id])
-            @reviews = book.reviews 
+        if params[:book_id] && @book = Book.find_by_id(params[:book_id])
+            @reviews = @book.reviews.order_by_rating
         elsif params[:user_id] && user = User.find_by_id(params[:user_id])
-            @reviews = user.reviews
+            @reviews = user.reviews.order_by_rating
         else
-            @reviews = Review.all
+            @reviews = Review.order_by_rating
         end
     end
 
-    def show
-        set_review
-        
+    def show   
     end
 
     def edit
-        set_review
     end
 
     def update
@@ -66,6 +64,6 @@ class ReviewsController < ApplicationController
     end
 
     def review_params
-        params.require(:review).permit(:content, :rating, :book_id, book_attributes: [:title, :author, :length, :year])
+        params.require(:review).permit(:content, :rating, :book_id, :user_id, book_attributes: [:title, :author, :length, :year])
     end
 end

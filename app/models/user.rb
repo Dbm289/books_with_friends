@@ -5,6 +5,7 @@ class User < ApplicationRecord
     has_many :books, through: :reviews
 
     validates :username, :email, presence: true
+    validate :is_email?
     #validates :username, :email, uniqueness: true
 
     def self.from_omniauth(response)
@@ -14,4 +15,10 @@ class User < ApplicationRecord
           u.password = SecureRandom.hex(15)
         end
       end
+
+      def is_email?
+        if !email.match(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i)
+          errors.add(:email, "Email address is not valid!")
+        end 
+      end 
 end

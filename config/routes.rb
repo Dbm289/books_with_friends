@@ -9,10 +9,12 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/auth/:provider/callback', to: 'sessions#omniauth'
-  resources :books
-  #resources :users, only [:show, :index] do
-   # resources :reviews, only: [:show, :index, :new, :edit]
-  #end
+  resources :users, only: [:show, :index] do
+    resources :reviews, only: [:show, :index, :edit]
+  end
+  resources :books do 
+    resources :reviews, only: [:new, :create, :edit]
+  end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

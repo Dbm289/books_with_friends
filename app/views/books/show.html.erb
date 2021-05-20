@@ -7,4 +7,4 @@
 <h2> Year released: <%= @book.year%> </h2>
 
 <%= link_to "See All Reviews of #{@book.title}", reviews_path(:book_id => @book.id) %> /
-<%= link_to "Add Your Review", new_review_path %>
+<%= link_to "Add Your Review", new_book_review_path(@book) %>
